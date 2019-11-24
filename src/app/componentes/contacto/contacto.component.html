@@ -1,0 +1,74 @@
+
+<div class="card bg-warning text-white m-2 pt-4 pb-4 pl-3 pr-3">
+    <div class="alert alert-danger" *ngIf="name.touched && !name.valid">
+        El campo nombre es requerido
+     </div>
+     <div class="alert alert-danger" *ngIf="apellidopa.touched && !apellidopa.valid">
+        El campo apellido es requerido
+     </div>
+     <div class="alert alert-danger" *ngIf="telefono.touched && !telefono.valid">
+        El campo telefono es requerido
+     </div>
+     <div class="alert alert-danger" *ngIf="email.touched && !email.valid">
+        El campo nombre es requerido
+     </div>
+        <form #contactoform="ngForm" (ngSubmit)="onSubmit(contactoform)" >
+                <div class="form-row  justify-content-center ">
+        
+            <input type="hidden" name="$key" #$key="ngModel" [(ngModel)]="contaServ.selectedContacto.$key">
+                  <div class="col-md-4  mb-2 mt-2">  
+
+                     <input type="text"
+                      class="form-control" 
+                      name="name"
+                      #name="ngModel"
+                      required
+                      minlength="5"
+                      [(ngModel)] ="contaServ.selectedContacto.name"                      
+                      placeholder="Nombre:">
+                      
+                  </div>
+                  
+
+                  <div class="col-md-4  mb-2 mt-2">                   
+                      <input type="text"
+                       class="form-control"
+                       name="apellidopa"
+                       #apellidopa="ngModel"
+                       required
+                       minlength="5"
+                       [(ngModel)]="contaServ.selectedContacto.apellidopa"
+                        placeholder="Apellido:">
+                  </div>  
+
+                  <div class="col-md-4  mb-2 mt-2">                   
+                      <input type="text"
+                       class="form-control "
+                       name="telefono"
+                       #telefono="ngModel" 
+                       maxlength="10"
+                       minlength="10"                     
+                       required                      
+                       [(ngModel)]="contaServ.selectedContacto.telefono"
+                       placeholder="Telefono:">
+                   </div>
+
+                  <div class="col-md-4  mb-2 mt-2">                   
+                      <input type="text"
+                      class="form-control"
+                      name="email"
+                      #email="ngModel"                      
+                      pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
+                      required
+                      [(ngModel)]="contaServ.selectedContacto.email"
+                      placeholder="Email:">
+                  </div>                      
+                              
+                 
+                  <div class=" mb-2 mt-2">
+                    <button type="submit" [disabled]="!contactoform.valid" class="btn btn-outline-primary mr-2"><i class="fas fa-plus-circle"></i>Agregar Contacto</button>
+                    <button type="reset" class="btn btn-secondary" (click)="resetForm(contactoform)"><i class="fas fa-sync-alt"></i>Reset</button>
+                  </div>
+                </div>
+              </form>
+      </div>
